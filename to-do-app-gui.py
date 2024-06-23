@@ -15,12 +15,19 @@ def generate_color():
 conn = sqlite3.connect("todo.db")
 cursor = conn.cursor()
 
-
-# cursor.execute("""DELETE FROM tasks
-#         """)
-#
-# conn.commit()
-
+cursor.execute(""" CREATE TABLE IF NOT EXISTS tasks(
+                id INTEGER PRIMARY KEY ,
+                priority VARCHAR,
+                description VARCHAR UNIQUE,
+                category VARCHAR,
+                date DATE); """)
+cursor.execute("""
+    CREATE TABLE IF NOT EXISTS categories(
+    id INTEGER PRIMARY KEY,
+    category VARCHAR,
+    color VARCHAR UNIQUE);
+""")
+conn.commit()
 
 class Taskitem(ttk.Label):
     def __init__(self, master, category=None, **kwargs):

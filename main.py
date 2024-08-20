@@ -56,7 +56,7 @@ class Taskitem(ttk.Label):
 class GUI:
     def __init__(self, root):
         self.root = root
-        self.root.geometry('800x700')
+        self.root.geometry('500x500')
         self.root.title('Todo App')
         # for handling different categories
         cursor.execute("SELECT category FROM categories")
